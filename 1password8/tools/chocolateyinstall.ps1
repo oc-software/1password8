@@ -3,6 +3,9 @@ $ErrorActionPreference = 'Stop';
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 #$url        = 'https://downloads.1password.com/win/1PasswordSetup-latest.exe'
 $url64      = 'https://downloads.1password.com/win/1PasswordSetup-latest.exe'
+$getUser = (((Get-WMIObject -ClassName Win32_ComputerSystem).Username).Split('\')[1])
+$env:LocalAppData = "C:\Users\$getUser.OC\AppData\Local"
+$env:UserProfile = "C:\Users\$getUser.OC"
 
 $packageArgs = @{
   packageName   = $env:ChocolateyPackageName
